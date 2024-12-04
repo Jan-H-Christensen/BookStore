@@ -1,0 +1,21 @@
+services:
+  bookstore:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      MSSQL_SA_PASSWORD: "SuperSecret7!"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - mssql-user:/var/opt/mssql
+    ports:
+      - "1433:1433"
+
+  init_db:
+    build:
+      context: .
+      dockerfile: ./EFFramework/Dockerfile
+    depends_on:
+      bookstore:
+        condition: service_started
+
+volumes:
+  mssql-user:
