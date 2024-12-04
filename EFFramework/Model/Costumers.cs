@@ -16,7 +16,6 @@ namespace EFFramework.Model
         public required string name { get; set; }
         [Required]
         public required string email { get; set; }
-        [Required]
-        public required string phone { get; set; }
+        public string? phone { get; set; }
     }
 }
