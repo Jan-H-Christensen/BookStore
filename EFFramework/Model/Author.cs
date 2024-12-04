@@ -16,6 +16,6 @@ namespace EFFramework.Model
         [Required]
         public required string name { get; set; }
         public string? country { get; set; }
-        public DateTime birthDate { get; set; }
+        public DateTime? birthDate { get; set; }
     }
 }

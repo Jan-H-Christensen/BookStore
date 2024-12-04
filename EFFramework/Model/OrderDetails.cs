@@ -11,10 +11,16 @@ namespace EFFramework.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int orderDetails { get; set; }
+        public int orderDetailsId { get; set; }
+        [Required]
+        [ForeignKey("orderId")]
         public int orderId { get; set; }
+        [Required]
+        [ForeignKey("bookId")]
         public int bookId { get; set; }
+        [Required]
         public int quantity { get; set; }
+        [Required]
         public double price { get; set; }
     }
 }

@@ -12,8 +12,12 @@ namespace EFFramework.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int orderId { get; set; }
+        [Required]
+        [ForeignKey("Costumers")]
         public int costumerId { get; set; }
+        [Required]
         public DateTime orderDate { get; set; }
+        [Required]
         public int totalAmount { get; set; }
     }
 }
