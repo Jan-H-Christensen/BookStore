@@ -11,10 +11,10 @@ namespace EFFramework.Model
     {
         [Key]
         [ForeignKey("bookId")]
-        public required int bookId { get; set; }
+        public required int book_id { get; set; }
         [Required]
-        public required int stockLevel { get; set; }
+        public required int stock_level { get; set; }
         [Required]
-        public required DateTime lastUpdated { get; set; }
+        public required DateTime last_updated { get; set; }
     }
 }

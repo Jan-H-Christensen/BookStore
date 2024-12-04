@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFFramework", "EFFramework\EFFramework.csproj", "{999CC81D-0F08-4374-8AEA-1067C05185C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStoreConApp", "BookStoreConApp\BookStoreConApp.csproj", "{9E407F5C-F323-4462-A225-EA4C7218F440}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{999CC81D-0F08-4374-8AEA-1067C05185C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{999CC81D-0F08-4374-8AEA-1067C05185C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{999CC81D-0F08-4374-8AEA-1067C05185C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E407F5C-F323-4462-A225-EA4C7218F440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E407F5C-F323-4462-A225-EA4C7218F440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E407F5C-F323-4462-A225-EA4C7218F440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E407F5C-F323-4462-A225-EA4C7218F440}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
