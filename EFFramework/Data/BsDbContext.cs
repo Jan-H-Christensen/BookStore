@@ -13,6 +13,11 @@ namespace EFFramework.Data
         public BsDbContext() { }
 
         public virtual DbSet<Author>? usersTables { get; set; }
+        public virtual DbSet<Orders>? ordersTables { get; set; }
+        public virtual DbSet<Inventory>? inventoryTables { get; set; }
+        public virtual DbSet<Costumers>? costumersTables { get; set; }
+        public virtual DbSet<Books>? booksTables { get; set; }
+        public virtual DbSet<OrderDetails>? orderDetailsTables { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
