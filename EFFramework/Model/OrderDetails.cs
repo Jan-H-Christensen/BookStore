@@ -21,6 +21,6 @@ namespace EFFramework.Model
         [Required]
         public int quantity { get; set; }
         [Required]
-        public double price { get; set; }
+        public decimal price { get; set; }
     }
 }

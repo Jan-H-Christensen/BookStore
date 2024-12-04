@@ -17,6 +17,8 @@ namespace EFFramework.Model
         [Required]
         public required string genre { get; set; }
         [Required]
+        public required decimal price { get; set; }
+        [Required]
         [ForeignKey("authorId")]
         public required int author_Id { get; set; }
         [Required]

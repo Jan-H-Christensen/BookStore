@@ -45,35 +45,45 @@ namespace BookStoreConApp.DbServices
             }
         }
 
-        public void CreateOrder(Orders order)
+        public void CreateOrder(int costumerId, Dictionary<Books, int> books)
         {
             try
             {
                 _sqlContext.Database.EnsureCreated();
-                if (order != null)
+                if (books != null)
                 {
+                    var totalPrice = 0.0m;
+
+                    foreach (var book in books)
+                    {
+                        var calc = book.Key.price * book.Value;
+                        totalPrice += calc;
+                    }
+
+                    var order = new Orders
+                    {
+                        costumers_id = costumerId,
+                        total_amount = totalPrice,
+                        order_date = DateTime.Now
+                    };
+
                     _sqlContext.Orders!.Add(order);
-                    UpdateInventoryByPurchaseOrder(order.order_id, order.total_amount);
-                    UpdateBookStockLevel(order.order_id, order.total_amount);
                     _sqlContext.SaveChanges();
+
+                    int newOrderId = order.order_id;
+
+                    CreateOrderDetailByPurchaseOrder(newOrderId, books);
+
+                    foreach (var book in books)
+                    {
+                        UpdateInventoryByPurchaseOrder(book.Key.book_id, book.Value);
+                        UpdateBookStockLevel(book.Key.book_id, book.Value);
+                    }
                 }
             }
             catch (System.Exception)
             {
                 System.Console.WriteLine("order not created");
-                throw;
-            }
-        }
-
-        public void CreateOrderDetail(OrderDetails orderDetail)
-        {
-            try
-            {
-
-            }
-            catch (System.Exception)
-            {
-                System.Console.WriteLine("order detail not created");
                 throw;
             }
         }
@@ -119,6 +129,34 @@ namespace BookStoreConApp.DbServices
             catch (System.Exception)
             {
                 System.Console.WriteLine("failed to update book stock level by purchase order");
+                throw;
+            }
+        }
+
+        private void CreateOrderDetailByPurchaseOrder(int orderId, Dictionary<Books, int> books)
+        {
+            try
+            {
+                _sqlContext.Database.EnsureCreated();
+
+                foreach (var book in books)
+                {
+                    var orderDetail = new OrderDetails
+                    {
+                        order_id = orderId,
+                        book_id = book.Key.book_id,
+                        quantity = book.Value,
+                        price = book.Key.price
+                    };
+
+                    _sqlContext.OrderDetails!.Add(orderDetail);
+                }
+
+                _sqlContext.SaveChanges();
+            }
+            catch (System.Exception)
+            {
+                System.Console.WriteLine("failed to create order detail by purchase order");
                 throw;
             }
         }

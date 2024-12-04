@@ -14,10 +14,10 @@ namespace EFFramework.Model
         public int order_id { get; set; }
         [Required]
         [ForeignKey("Costumers")]
-        public int customers_id { get; set; }
+        public int costumers_id { get; set; }
         [Required]
         public DateTime order_date { get; set; }
         [Required]
-        public int total_amount { get; set; }
+        public decimal total_amount { get; set; }
     }
 }
