@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace EFFramework.Model
 {
-    public class Author
+    public class Orders
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int authorId { get; set; }
-
-        [Required]
-        public required string name { get; set; }
-        public string? country { get; set; }
-        public DateTime birthDate { get; set; }
+        public int orderId { get; set; }
+        public int costumerId { get; set; }
+        public DateTime orderDate { get; set; }
+        public int totalAmount { get; set; }
     }
 }
