@@ -12,7 +12,7 @@ namespace EFFramework.Data
         public BsDbContext(DbContextOptions<BsDbContext> options) : base(options) { }
         public BsDbContext() { }
 
-        public virtual DbSet<Author>? Author { get; set; }
+        public virtual DbSet<Author>? Authors { get; set; }
         public virtual DbSet<Orders>? Orders { get; set; }
         public virtual DbSet<Inventory>? Inventory { get; set; }
         public virtual DbSet<Costumers>? Costumers { get; set; }

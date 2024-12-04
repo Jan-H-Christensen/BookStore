@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EFFramework.Data;
 using EFFramework.Model;
+using Microsoft.Identity.Client;
 
 namespace BookStoreConApp.DbServices
 {
@@ -41,6 +42,48 @@ namespace BookStoreConApp.DbServices
             catch (System.Exception)
             {
                 System.Console.WriteLine("books not found");
+                throw;
+            }
+        }
+
+        public Books GetBook(int bookId)
+        {
+            try
+            {
+                _sqlContext.Database.EnsureCreated();
+                return _sqlContext.Books.Where(b => b.book_id == bookId).FirstOrDefault();
+            }
+            catch (System.Exception)
+            {
+                System.Console.WriteLine("book not found");
+                throw;
+            }
+        }
+
+        public Author GetAuthor(int authorId)
+        {
+            try
+            {
+                _sqlContext.Database.EnsureCreated();
+                return _sqlContext.Authors.Where(a => a.author_id == authorId).FirstOrDefault();
+            }
+            catch (System.Exception)
+            {
+                System.Console.WriteLine("author not found");
+                throw;
+            }
+        }
+
+        public List<Inventory> GetInventory()
+        {
+            try
+            {
+                _sqlContext.Database.EnsureCreated();
+                return _sqlContext.Inventory.ToList();
+            }
+            catch (System.Exception)
+            {
+                System.Console.WriteLine("inventory not found");
                 throw;
             }
         }
