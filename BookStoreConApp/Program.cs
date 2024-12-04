@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using BookStoreConApp.DbServices;
 using EFFramework.Data;
+using EFFramework.Model;
 
 Console.WriteLine("get all books!");
 var context = new BsDbContextFactory().CreateDbContext();
