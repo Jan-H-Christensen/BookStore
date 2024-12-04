@@ -12,12 +12,12 @@ namespace EFFramework.Data
         public BsDbContext(DbContextOptions<BsDbContext> options) : base(options) { }
         public BsDbContext() { }
 
-        public virtual DbSet<Author>? usersTables { get; set; }
-        public virtual DbSet<Orders>? ordersTables { get; set; }
-        public virtual DbSet<Inventory>? inventoryTables { get; set; }
-        public virtual DbSet<Costumers>? costumersTables { get; set; }
-        public virtual DbSet<Books>? booksTables { get; set; }
-        public virtual DbSet<OrderDetails>? orderDetailsTables { get; set; }
+        public virtual DbSet<Author>? Author { get; set; }
+        public virtual DbSet<Orders>? Orders { get; set; }
+        public virtual DbSet<Inventory>? Inventory { get; set; }
+        public virtual DbSet<Costumers>? Costumers { get; set; }
+        public virtual DbSet<Books>? Books { get; set; }
+        public virtual DbSet<OrderDetails>? OrderDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

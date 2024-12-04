@@ -11,17 +11,15 @@ namespace EFFramework.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int bookId { get; set; }
+        public int book_id { get; set; }
         [Required]
-        public required string bookTitle { get; set; }
+        public required string title { get; set; }
         [Required]
         public required string genre { get; set; }
         [Required]
         [ForeignKey("authorId")]
-        public required int authorId { get; set; }
+        public required int author_Id { get; set; }
         [Required]
-        public required string bookPrice { get; set; }
-        [Required]
-        public required int stockLevel { get; set; }
+        public required int stock_level { get; set; }
     }
 }

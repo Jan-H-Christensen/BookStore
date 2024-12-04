@@ -13,13 +13,8 @@ namespace EFFramework.Data
     {
         public BsDbContext CreateDbContext(string[]? args = null)
         {
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
             var optionsBuilder = new DbContextOptionsBuilder<BsDbContext>();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseSqlServer("Server=localhost,1433;Initial Catalog=BookStoreDB;User ID=sa;Password=SuperSecret7!;TrustServerCertificate=True;");
 
             return new BsDbContext(optionsBuilder.Options);
         }

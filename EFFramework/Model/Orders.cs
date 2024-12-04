@@ -11,13 +11,13 @@ namespace EFFramework.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int orderId { get; set; }
+        public int order_id { get; set; }
         [Required]
         [ForeignKey("Costumers")]
-        public int costumerId { get; set; }
+        public int customers_id { get; set; }
         [Required]
-        public DateTime orderDate { get; set; }
+        public DateTime order_date { get; set; }
         [Required]
-        public int totalAmount { get; set; }
+        public int total_amount { get; set; }
     }
 }

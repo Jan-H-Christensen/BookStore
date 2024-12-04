@@ -11,11 +11,11 @@ namespace EFFramework.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int authorId { get; set; }
+        public int author_id { get; set; }
 
         [Required]
         public required string name { get; set; }
         public string? country { get; set; }
-        public DateTime? birthDate { get; set; }
+        public DateTime? date_of_birth { get; set; }
     }
 }

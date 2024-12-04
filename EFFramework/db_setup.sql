@@ -30,8 +30,8 @@ CREATE TABLE Books (
 );
 
 -- Create Customers Table
-CREATE TABLE Customers (
-    customer_id INT PRIMARY KEY,
+CREATE TABLE Costumers (
+    costumers_id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     address TEXT NOT NULL,
@@ -41,10 +41,10 @@ CREATE TABLE Customers (
 -- Create Orders Table
 CREATE TABLE Orders (
     order_id INT PRIMARY KEY,
-    customer_id INT,
+    costumers_id INT,
     order_date DATETIME NOT NULL,
     total_amount DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+    FOREIGN KEY (costumers_id) REFERENCES Costumers(costumers_id)
 );
 
 -- Create OrderDetails Table
@@ -88,7 +88,7 @@ INSERT INTO Books (book_id, title, genre, price, stock_level, author_id) VALUES
 (10, 'Thank hope base even health.', 'Science Fiction', 19.03, 100, 3);
 
 -- Insert into Customers
-INSERT INTO Customers (customer_id, name, email, address, phone) VALUES
+INSERT INTO Costumers (costumers_id, name, email, address, phone) VALUES
 (1, 'Kimberly Nichols', 'cmartinez@santiago-medina.com', '0757 Sarah Pines Suite 262\nMichaelmouth, IL 60035', '+1-237-592-9664x11363'),
 (2, 'Michael Beck', 'taylorlaurie@rodriguez.com', '5973 Darius Common Suite 597\nNew Adam, PA 26968', '(204)140-8526'),
 (3, 'Robert Page', 'susan28@robertson-smith.biz', 'PSC 4049, Box 1769\nAPO AE 83942', '635.029.4044'),
@@ -96,7 +96,7 @@ INSERT INTO Customers (customer_id, name, email, address, phone) VALUES
 (5, 'Alice Estrada', 'tdunlap@ramsey.com', '51797 Amanda Plaza\nEast Brian, NM 22021', '+1-369-086-3449x44578');
 
 -- Insert into Orders
-INSERT INTO Orders (order_id, customer_id, order_date, total_amount) VALUES
+INSERT INTO Orders (order_id, costumers_id, order_date, total_amount) VALUES
 (1, 4, '2024-11-15 06:56:37', 120.86),
 (2, 5, '2024-08-29 10:27:22', 57.09),
 (3, 5, '2024-02-11 19:52:42', 49.13),

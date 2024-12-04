@@ -11,11 +11,12 @@ namespace EFFramework.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int costumerId { get; set; }
+        public int costumers_id { get; set; }
         [Required]
         public required string name { get; set; }
         [Required]
         public required string email { get; set; }
+        public string? address { get; set; }
         public string? phone { get; set; }
     }
 }
