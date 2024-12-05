@@ -23,7 +23,7 @@
       "request": "launch",
       "preLaunchTask": "docker-run: debug",
       "netCore": {
-        "appProject": "${workspaceFolder}/EFFramework/EFFramework.csproj"
+        "appProject": "${workspaceFolder}/DBApi/DBApi.csproj"
       }
     }
   ]
