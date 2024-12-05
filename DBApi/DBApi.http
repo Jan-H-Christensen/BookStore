@@ -1,0 +1,6 @@
+@DBApi_HostAddress = http://localhost:5145
+
+GET {{DBApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

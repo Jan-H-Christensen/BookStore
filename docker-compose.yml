@@ -17,5 +17,17 @@ services:
       bookstore:
         condition: service_started
 
+  dbapi:
+    build:
+      context: .
+      dockerfile: DBApi/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 8080:8080
+    depends_on:
+      bookstore:
+        condition: service_started
+
 volumes:
   mssql-user:
