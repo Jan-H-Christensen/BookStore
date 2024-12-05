@@ -14,7 +14,7 @@ namespace DBApi.Service
 
         private readonly Client _client;
 
-        public DbService(BsDbContext sqlContext,  Client client)
+        public DbService(BsDbContext sqlContext, Client client)
         {
             _sqlContext = sqlContext;
             _client = client;
@@ -76,7 +76,7 @@ namespace DBApi.Service
             {
                 await _sqlContext.Database.EnsureCreatedAsync();
 
-                Task task = new Task(async () => await _client.SaveAuthor( await _sqlContext.Authors.ToListAsync()));
+                Task task = new Task(async () => await _client.SaveAuthor(await _sqlContext.Authors.ToListAsync()));
                 task.Start();
 
                 return await _sqlContext.Authors.Where(a => a.author_id == authorId).FirstOrDefaultAsync();

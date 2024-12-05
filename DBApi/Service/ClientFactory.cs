@@ -9,7 +9,9 @@ namespace DBApi.Service
     {
         public static Client Create()
         {
-            return new Client("localhost",6379,"");
+            var client = new Client("redis", 6379, "");
+            client.Connect();
+            return client;
         }
     }
 }

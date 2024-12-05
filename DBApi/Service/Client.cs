@@ -9,7 +9,7 @@ namespace DBApi.Service
 {
     public class Client
     {
-         private readonly string _hostname;
+        private readonly string _hostname;
         private readonly int _port;
         private readonly string _password;
         private ConnectionMultiplexer _redis;
@@ -23,7 +23,12 @@ namespace DBApi.Service
 
         public void Connect()
         {
-            _redis = ConnectionMultiplexer.Connect($"{_hostname}:{_port},password={_password}");
+
+            var configString = string.IsNullOrWhiteSpace(_password)
+                ? $"{_hostname}:{_port}"
+                : $"{_hostname}:{_port},password={_password}";
+
+            _redis = ConnectionMultiplexer.Connect(configString);
         }
 
         public IDatabase GetDatabase()
@@ -51,7 +56,7 @@ namespace DBApi.Service
         public async Task<List<Books>> GetBooks()
         {
             var database = GetDatabase();
-            
+
             var bookKeys = await database.SetMembersAsync("Books:Index");
             var allBooks = new List<Books>();
 
@@ -70,7 +75,7 @@ namespace DBApi.Service
         public async Task<Books?> GetBooksById(string id)
         {
             var database = GetDatabase();
-            
+
             var bookKeys = await database.SetMembersAsync("Books:Index");
 
             foreach (var key in bookKeys)
@@ -87,7 +92,7 @@ namespace DBApi.Service
         public async Task<Author?> GetAuthor(string id)
         {
             var database = GetDatabase();
-            
+
             var authorKeys = await database.SetMembersAsync("Author:Index");
 
             foreach (var key in authorKeys)
