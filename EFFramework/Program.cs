@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Thread.Sleep(10000);
+        Thread.Sleep(60000);
         string masterConnectionString = "Server=bookstore;Initial Catalog=master;User ID=sa;Password=SuperSecret7!;TrustServerCertificate=True;";
 
         using (SqlConnection conn = new SqlConnection(masterConnectionString))
