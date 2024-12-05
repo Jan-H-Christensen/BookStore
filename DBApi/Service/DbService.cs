@@ -76,10 +76,9 @@ namespace DBApi.Service
             {
                 await _sqlContext.Database.EnsureCreatedAsync();
 
-                Task task = new Task(async () => await _client.SaveAuthor(await _sqlContext.Authors.ToListAsync()));
-                task.Start();
+                await _client.SaveAuthor(await _sqlContext.Authors.ToListAsync());
 
-                return await _sqlContext.Authors.Where(a => a.author_id == authorId).FirstOrDefaultAsync();
+                return await _client.GetAuthor(authorId.ToString());
             }
             catch (System.Exception)
             {

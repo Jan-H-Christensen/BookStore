@@ -69,6 +69,7 @@ namespace DBApi.Service
                 }
             }
 
+            await CashUpdateBooks();
             return allBooks;
         }
 
@@ -81,11 +82,13 @@ namespace DBApi.Service
             foreach (var key in bookKeys)
             {
                 var bookData = await database.StringGetAsync(key.ToString());
-                if (bookData.HasValue)
+                if (bookData.HasValue && id == key.ToString())
                 {
                     return Newtonsoft.Json.JsonConvert.DeserializeObject<Books>(bookData);
                 }
             }
+
+            await CashUpdateBooks();
             return null;
         }
 
@@ -98,15 +101,17 @@ namespace DBApi.Service
             foreach (var key in authorKeys)
             {
                 var authorData = await database.StringGetAsync(key.ToString());
-                if (authorData.HasValue)
+                if (authorData.HasValue && id == key.ToString())
                 {
                     return Newtonsoft.Json.JsonConvert.DeserializeObject<Author>(authorData);
                 }
             }
+
+            await CashUpdateAuthor();
             return null;
         }
 
-        public async Task CashUpdateBooks(string id)
+        public async Task CashUpdateBooks()
         {
             var database = GetDatabase();
             var bookIds = await database.SetMembersAsync("Books:Index");
@@ -117,7 +122,7 @@ namespace DBApi.Service
             await database.KeyDeleteAsync("Books:Index");
         }
 
-        public async Task CashUpdateAuthor(string id)
+        public async Task CashUpdateAuthor()
         {
             var database = GetDatabase();
             var AuthorIds = await database.SetMembersAsync("Author:Index");
