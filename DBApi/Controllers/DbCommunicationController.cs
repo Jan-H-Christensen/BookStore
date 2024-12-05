@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace DBApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")] 
+    [Route("[controller]")]
     public class DbCommunicationController : Controller
     {
         private readonly IDbService _dbService;
@@ -109,7 +109,7 @@ namespace DBApi.Controllers
         }
 
         [HttpPost("CreateOrder")]
-        public async Task<IActionResult> CreateOrder(int costumerId,[FromBody] Dictionary<Books, int> books)
+        public async Task<IActionResult> CreateOrder(int costumerId, [FromBody] Dictionary<Books, int> books)
         {
             try
             {

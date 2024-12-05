@@ -13,7 +13,7 @@ builder.Services.AddDbContext<BsDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
 );
 
-builder.Services.AddSingleton<IDbService, DbService>();
+builder.Services.AddScoped<IDbService, DbService>();
 
 builder.Services.AddSingleton(ClientFactory.Create());
 
