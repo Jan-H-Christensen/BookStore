@@ -15,9 +15,12 @@ namespace DBApi.Controllers
     public class DbCommunicationController : Controller
     {
         private readonly IDbService _dbService;
-        public DbCommunicationController(IDbService dbService)
+        private readonly Client _client;
+
+        public DbCommunicationController(IDbService dbService, Client client)
         {
             _dbService = dbService;
+            _client = client;
         }
 
         [HttpGet("Login")]
@@ -39,6 +42,11 @@ namespace DBApi.Controllers
         {
             try
             {
+                var books = await _client.GetBooks();
+                if (books.Count > 0)
+                {
+                    return books;
+                }
                 return await _dbService.GetBooks();
             }
             catch (System.Exception)
@@ -53,6 +61,11 @@ namespace DBApi.Controllers
         {
             try
             {
+                var books = await _client.GetBooksById(bookId.ToString());
+                if (books != null)
+                {
+                    return books;
+                }
                 return await _dbService.GetBooksId(bookId);
             }
             catch (System.Exception)
@@ -67,6 +80,11 @@ namespace DBApi.Controllers
         {
             try
             {
+                var author = await _client.GetAuthor(authorId.ToString());
+                if (author != null)
+                {
+                    return author;
+                }
                 return await _dbService.GetAuthor(authorId);
             }
             catch (System.Exception)
