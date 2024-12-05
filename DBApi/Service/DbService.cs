@@ -12,9 +12,12 @@ namespace DBApi.Service
     {
         private readonly BsDbContext _sqlContext;
 
-        public DbService(BsDbContext sqlContext)
+        private readonly Client _client;
+
+        public DbService(BsDbContext sqlContext,  Client client)
         {
             _sqlContext = sqlContext;
+            _client = client;
         }
 
         public async Task<Costumers> Login(string name, string email)
@@ -36,7 +39,15 @@ namespace DBApi.Service
             try
             {
                 await _sqlContext.Database.EnsureCreatedAsync();
-                return await _sqlContext.Books.ToListAsync();
+                var books = await _sqlContext.Books.ToListAsync();
+                if (books != null && books.Count > 0)
+                {
+                    foreach (var book in books)
+                    {
+                        await _client.SaveBooks(book.book_id.ToString(), book);
+                    }
+                }
+                return books;
             }
             catch (System.Exception)
             {
@@ -64,6 +75,10 @@ namespace DBApi.Service
             try
             {
                 await _sqlContext.Database.EnsureCreatedAsync();
+
+                Task task = new Task(async () => await _client.SaveAuthor( await _sqlContext.Authors.ToListAsync()));
+                task.Start();
+
                 return await _sqlContext.Authors.Where(a => a.author_id == authorId).FirstOrDefaultAsync();
             }
             catch (System.Exception)

@@ -15,6 +15,8 @@ builder.Services.AddDbContext<BsDbContext>(options =>
 
 builder.Services.AddSingleton<IDbService, DbService>();
 
+builder.Services.AddSingleton(ClientFactory.Create());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
